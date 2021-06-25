@@ -13,54 +13,135 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Phone sync'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  MyHomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+        body: Row(
+      children: [
+        Expanded(
+          flex: 1,
+          child: Container(
+            color: Colors.grey,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.connected_tv,
+                          size: 30,
+                        )),
+                    Text(
+                      "connect",
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.folder,
+                          size: 30,
+                        )),
+                    Text(
+                      "files",
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.settings,
+                          size: 30,
+                        )),
+                    Text(
+                      "settings",
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
+                  ],
+                )
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+        Expanded(
+            flex: 5,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.donut_large_outlined,
+                          size: 30,
+                          color: Colors.green,
+                        )),
+                    Text(
+                      "phone: austinphone",
+                      style: Theme.of(context).textTheme.headline6,
+                    )
+                  ],
+                ),
+                Divider(),
+                Text(
+                  "Files",
+                  style: Theme.of(context).textTheme.headline5,
+                )
+              ],
+            ))
+      ],
+    ));
+  }
+}
+
+class DAtaFiles extends StatelessWidget {
+  const DAtaFiles({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [Text("file name"), Text("size"), Text("phone")],
+        ),
+        Divider(),
+        ListView.separated(
+          itemCount: 25,
+          separatorBuilder: (BuildContext context, int index) =>
+              const Divider(),
+          itemBuilder: (BuildContext context, int index) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [Text("file name"), Text("size"), Text("phone")],
+            );
+          },
+        )
+      ],
     );
   }
 }
